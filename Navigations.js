@@ -11,18 +11,13 @@ import Settings from "./Screens/Settings";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import FontAwesome from "@expo/vector-icons/FontAwesome";
 import Entypo from "@expo/vector-icons/Entypo";
-import { blue } from "react-native-reanimated/lib/typescript/Colors";
 
 // Stack
 const Stack = createNativeStackNavigator();
 
 function MyStack() {
   return (
-    <Stack.Navigator
-    options={{
-      color: blue,
-    }} 
-    >
+    <Stack.Navigator>
       <Stack.Screen name="Story" component={Story} />
       <Stack.Screen name="Favorite" component={Favorite} />
     </Stack.Navigator>
