@@ -2,8 +2,8 @@ import React from "react";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import LoginScreen from "../../Screens/LoginScreen";
 import Navigation from "../../Navigations";
-import test from "../../test"
-import { hide } from "expo-router/build/utils/splash";
+import test from "../../test";
+import test2 from "../../test2"; 
 
 
 // Stack
@@ -17,6 +17,7 @@ function MyOnboarding() {
       <OnboardingStack.Screen options={{
         headerShown:false
       }} name="Hanchat" component={Navigation} />
+      <OnboardingStack.Screen name="testing2" component={test2} />
     </OnboardingStack.Navigator>
   );
 }
