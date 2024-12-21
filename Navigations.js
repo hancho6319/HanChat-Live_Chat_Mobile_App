@@ -1,5 +1,15 @@
-import * as React from "react";
-import { StyleSheet } from "react-native";
+import {
+  TextInput,
+  ScrollView,
+  View,
+  Text,
+  TouchableOpacity,
+  StyleSheet,
+  Pressable,
+  BackHandler,
+  ToastAndroid,
+} from "react-native";
+import React, { useEffect } from "react";
 import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
@@ -81,6 +91,25 @@ function MyTabs() {
 }
 
 export default function Navigations() {
+
+  useEffect(() => {
+    const backAction = () => {
+      // Show a toast message
+      ToastAndroid.show("Exiting app", ToastAndroid.SHORT);
+      // Exit the app
+      BackHandler.exitApp();
+      return true; // Prevent default behavior
+    };
+
+    // Add back button event listener
+    const backHandler = BackHandler.addEventListener(
+      "hardwareBackPress",
+      backAction
+    );
+
+    return () => backHandler.remove(); // Cleanup on unmount
+  }, []);
+
   return <MyTabs />;
 }
 

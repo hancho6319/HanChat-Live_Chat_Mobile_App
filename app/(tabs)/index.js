@@ -1,23 +1,38 @@
 import React from "react";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import LoginScreen from "../../Screens/LoginScreen";
+import Welcome from "../../Onboarding/welcome";
+import LoginScreen from "../../Onboarding/LoginScreen";
 import Navigation from "../../Navigations";
-import test from "../../test";
-import test2 from "../../test2"; 
-
 
 // Stack
 const OnboardingStack = createNativeStackNavigator();
 
 function MyOnboarding() {
   return (
-    <OnboardingStack.Navigator initialRouteName="testing">
-      <OnboardingStack.Screen name="testing" component={test} />
-      <OnboardingStack.Screen name="Welcome" component={LoginScreen} />
-      <OnboardingStack.Screen options={{
-        headerShown:false
-      }} name="Hanchat" component={Navigation} />
-      <OnboardingStack.Screen name="testing2" component={test2} />
+    <OnboardingStack.Navigator initialRouteName="Welcome">
+      <OnboardingStack.Screen
+        options={{
+          headerShown: false,
+        }}
+        name="Welcome"
+        component={Welcome}
+      />
+      <OnboardingStack.Screen
+        options={{
+          headerShown: false,
+          gestureEnabled: false,
+        }}
+        name="LoginScreen"
+        component={LoginScreen}
+      />
+      <OnboardingStack.Screen
+        options={{
+          headerShown: false,
+          gestureEnabled: false,
+        }}
+        name="Hanchat"
+        component={Navigation}
+      />
     </OnboardingStack.Navigator>
   );
 }

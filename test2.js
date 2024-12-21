@@ -7,7 +7,7 @@ function MyButton() {
     card: '#6200ee', // Background color of the button
     text: '#ffffff', // Text color of the button
   };
-
+   
   return (
     <TouchableOpacity style={[styles.button, { backgroundColor: colors.card }]}>
       <Text style={[styles.text, { color: colors.text }]}>Button 1</Text>
