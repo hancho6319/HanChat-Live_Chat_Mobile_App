@@ -1,38 +1,67 @@
-import { ScrollView, Text, StyleSheet } from 'react-native';
-import React from 'react';
+import { View, Text, ScrollView, TouchableOpacity, Image } from "react-native";
+import { useState, useEffect } from "react";
+import { Card } from "react-native-paper";
 
-const Story = () => {
-  const stories = Array.from({ length: 100 });
 
+export default function Feed() {
+  const [data, setData] = useState([]);
+  console.log(data);
+  const url =
+    "https://newsapi.org/v2/top-headlines?country=us&category=business&apiKey=1f804abc9bf5432db60cbe929928d81f";
+
+  const getArticles = () => {
+    fetch(url)
+      .then((res) => res.json())
+      .then((json) => setData(json))
+      .catch((err) => console.log(err));
+  };
+
+  useEffect(() => {
+    getArticles();
+  }, []);
   return (
-    <ScrollView contentContainerStyle={styles.contentContainer}>
-      {stories.map((_, i) => (
-        <Text
-          key={i}
-          style={[
-            styles.text,
-            { color: i % 2 === 0 ? 'green' : 'red' }, // Green for even, Red for odd
-          ]}
-        >
-          Story {i + 1}
-        </Text>
-      ))}
-    </ScrollView>
+    <>
+      {Object.keys(data).length > 0 && (
+        <ScrollView>
+          <View
+            style={{
+              flex: 1,
+              justifyContent: "space-around",
+              alignItems: "center",
+              margin: 5,
+            }}
+          >
+            {data.articles.map((article, index) => (
+              <Card key={index}>
+                <View
+                  style={{
+                    flexDirection: "row",
+                    justifyContent: "space-around",
+                    alignItems: "center",
+                    marginVertical: 15,
+                  }}
+                >
+                  <Text style={{ fontSize: 18, fontWeight: "bold", flex: 1 }}>
+                    {article.title}
+                  </Text>
+                  <TouchableOpacity>
+                    <Image
+                      source={{ uri: article.urlToImage }}
+                      style={{
+                        width: 150,
+                        height: 150,
+                        borderRadius: 10,
+                      }}
+                    />
+                  </TouchableOpacity>
+                </View>
+                <Text style={{ fontSize: 16 }}>{article.description}</Text>
+                <Text>{article.publishedAt}</Text>
+              </Card>
+            ))}
+          </View>
+        </ScrollView>
+      )}
+    </>
   );
-};
-
-const styles = StyleSheet.create({
-  contentContainer: {
-    flexGrow: 1, // Allow content to grow and scroll
-    paddingVertical: 20, // Add space at the top and bottom
-  },
-  text: {
-    fontWeight: 'bold', // Bold text
-    fontSize: 20, // Font size
-    fontFamily: 'sans-serif', // Custom font family
-    marginBottom: 10, // Space between texts
-    textAlign: 'center', // Center text horizontally
-  },
-});
-
-export default Story;
+}

@@ -1,11 +1,5 @@
 import {
-  TextInput,
-  ScrollView,
-  View,
-  Text,
-  TouchableOpacity,
   StyleSheet,
-  Pressable,
   BackHandler,
   ToastAndroid,
 } from "react-native";
@@ -39,7 +33,11 @@ const TopTab = createMaterialTopTabNavigator();
 
 function MyTopTabs() {
   return (
-    <TopTab.Navigator>
+    <TopTab.Navigator screenOptions={{
+      //tabBarLabelStyle: { fontSize: 12 },
+      //tabBarItemStyle: { width: 100 },
+      tabBarStyle: { backgroundColor: '#00009c' }
+    }}>
       <TopTab.Screen name="Feed" component={Feed} />
       <TopTab.Screen name="Update" component={Update} />
       <TopTab.Screen name="Liked" component={Liked} />
@@ -54,6 +52,7 @@ function MyTabs() {
   return (
     <Tab.Navigator
       screenOptions={({ route }) => ({
+        tabBarStyle: { backgroundColor: '#00009c' },
         tabBarIcon: ({ focused, color, size }) => {
           let iconName;
           let iconsize;
@@ -61,15 +60,15 @@ function MyTabs() {
           if (route.name === "Stories") {
             iconName = focused ? "history" : "home-outline";
             iconsize = focused ? 35 : 20;
-            return <FontAwesome name="history" size={iconsize} color="black" />;
+            return <FontAwesome name="history" size={iconsize} color="white" />;
           } else if (route.name === "Chat") {
             iconName = focused ? "chat" : "chat-outline";
             iconsize = focused ? 35 : 20;
-            return <Entypo name="chat" size={iconsize} color="black" />;
+            return <Entypo name="chat" size={iconsize} color="white" />;
           } else if (route.name === "Settings") {
             iconName = focused ? "settings" : "settings-outline";
             iconsize = focused ? 35 : 20;
-            return <Ionicons name={iconName} size={iconsize} color="black" />;
+            return <Ionicons name={iconName} size={iconsize} color="white" />;
           }
         },
 

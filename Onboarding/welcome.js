@@ -1,10 +1,11 @@
 import React from "react";
+import * as Device from "expo-device";
 import { View, Text, StyleSheet, Image, Button } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import { useNavigation } from "@react-navigation/native";
 
 export default function App() {
-    const navigation = useNavigation();
+  const navigation = useNavigation();
   return (
     <LinearGradient colors={["#00009c", "#a4a4ff"]} style={styles.gradient}>
       <View
@@ -66,6 +67,15 @@ export default function App() {
         >
           Connect with different people around the world!
         </Text>
+        <Text
+          style={{
+            color: "#ffffff",
+            margin: 10,
+            fontSize: 6
+          }}
+        >
+          This app is developed by Engr. Haruna Auwalu
+        </Text>
         <View
           style={{
             marginTop: 40,
@@ -77,9 +87,13 @@ export default function App() {
           <Button
             title="Join now"
             color={"#000059"}
-            onPress={() => navigation.navigate('LoginScreen')}
+            onPress={() => navigation.navigate("SignIn Screen")}
           />
         </View>
+      </View>
+      <View style={styles.footer}>
+        <Text style={styles.mytext}>Device Name: {Device.modelName}</Text>
+        <Text style={styles.mytext}>OS: {Device.osName}</Text>
       </View>
     </LinearGradient>
   );
@@ -92,10 +106,13 @@ const styles = StyleSheet.create({
     alignItems: "center",
     borderRadius: 10,
   },
-  text: {
-    color: "#fff",
-    fontSize: 20,
-    fontWeight: "bold",
+  mytext: {
+    paddingHorizontal: "30",
+    color: "#ffffff",
+    fontSize: 10
+  },
+  footer: {
+    width: "100%"
   },
   image1: {
     width: 90,

@@ -1,7 +1,8 @@
 import React from "react";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import Welcome from "../../Onboarding/welcome";
-import LoginScreen from "../../Onboarding/LoginScreen";
+import SignIn from "../../Onboarding/SignInScreen";
+import SignUp from "../../Onboarding/SignUp";
 import Navigation from "../../Navigations";
 
 // Stack
@@ -22,8 +23,16 @@ function MyOnboarding() {
           headerShown: false,
           gestureEnabled: false,
         }}
-        name="LoginScreen"
-        component={LoginScreen}
+        name="SignIn Screen"
+        component={SignIn}
+      />
+      <OnboardingStack.Screen
+        options={{
+          headerShown: false,
+          gestureEnabled: false,
+        }}
+        name="Sign Up"
+        component={SignUp}
       />
       <OnboardingStack.Screen
         options={{
